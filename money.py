@@ -69,7 +69,7 @@ class Money:
             money = str(self.amount)
             big_money = f"{money}{self.currency.digits * '0'}"
             return f"{self.currency.code} {big_money[:self.currency.digits +2]}"
-        pass
+    
 
     def __repr__(self):
         return f"<Money {str(self)}>"
@@ -87,23 +87,36 @@ class Money:
         Add two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        pass
+        if self.currency.code == other.currency.code:
+            self.amount += other.amount
+            return self
+        else: 
+           raise DifferentCurrencyError("yas beans")
+
 
     def sub(self, other):
         """
         Subtract two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
+        if self.currency.code == other.currency.code:
+            self.amount -= other.amount
+            return self
+        else: 
+           raise DifferentCurrencyError("yas beans")    
         pass
 
     def mul(self, multiplier):
         """
         Multiply a money object by a number to get a new money object.
         """
-        pass
+        self.amount *= multiplier
+        return self
 
     def div(self, divisor):
         """
         Divide a money object by a number to get a new money object.
         """
-        pass
+        self.amount /= divisor
+        return self
+
