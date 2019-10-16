@@ -18,13 +18,18 @@ class Currency:
         - symbol - optional symbol used to designate currency
         - digits -- number of significant digits used
         """
-        pass
+        self.name = name
+        self.code = code 
+        self.symbol = symbol
+        self.digits = digits
+        
+        
 
     def __str__(self):
         """
         Should return the currency code, or code with symbol in parentheses.
         """
-        pass
+
 
     def __eq__(self, other):
         """
@@ -46,6 +51,8 @@ class Money:
         - amount -- quantity of currency
         - currency -- type of currency
         """
+        self.amount = amount
+        self.currency = currency
         pass
 
     def __str__(self):
@@ -53,6 +60,15 @@ class Money:
         Should use the currency symbol if available, else use the code.
         Use the currency digits to determine number of digits to show.
         """
+        if self.currency.symbol: 
+            if int == type(self.amount): 
+                return f"{self.currency.symbol}{self.amount}.{self.currency.digits * '0'}"
+            elif float == type(self.amount):
+                pass
+        elif not self.currency.symbol: 
+            money = str(self.amount)
+            big_money = f"{money}{self.currency.digits * '0'}"
+            return f"{self.currency.code} {big_money[:self.currency.digits +2]}"
         pass
 
     def __repr__(self):
